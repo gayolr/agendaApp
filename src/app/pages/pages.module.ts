@@ -7,12 +7,14 @@ import { AgendaListModule } from './agenda-list/agenda-list.module';
 import { RouterModule } from '@angular/router';
 import { PagesRoutingModule } from './pages-routing.module';
 import { HomeModule } from './home.component.html/home.module';
+import { AgendaAddModule } from './agenda-add/agenda-add.module';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		FormsModule,
       AgendaListModule,
+		AgendaAddModule,
       RouterModule,
       HomeModule,
       PagesRoutingModule,

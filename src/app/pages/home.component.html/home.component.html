@@ -1,11 +1,13 @@
 <nb-layout>
-   <!-- Change User later -->
-   <nb-layout-header fixed>Hello, welcome! User</nb-layout-header>
+   <nb-layout-header fixed>Home</nb-layout-header>
    <nb-layout-column class="colored-column-basic">
       <nb-card>
-         <nb-card-header>Dashboard</nb-card-header>
+         <nb-card-header>Hello, welcome! User</nb-card-header>
          <nb-card-body>
+            <button nbButton  [routerLink]="'add'">Add Contact</button>
+
             <button nbButton  [routerLink]="'list'">View Agenda</button>
+            <router-outlet></router-outlet>
          </nb-card-body>
       </nb-card>
    </nb-layout-column>

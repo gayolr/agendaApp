@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
-
 @Injectable({
 	providedIn: 'root'
 })
 export class AgendaService {
-	private _basketItems = [];
-	products$ = new BehaviorSubject(this._basketItems);
+	private _agendaItems = [];
+	contacts$ = new BehaviorSubject(this._agendaItems);
 
-	setProducts(products: any) {
-		this.products$.next(products);
+	setContacts(contacts: any) {
+		this.contacts$.next(contacts);
 	}
 
-	public get getProducts() {
-		return this.products$;
+	public get getContacts() {
+		return this.contacts$;
 	}
 }

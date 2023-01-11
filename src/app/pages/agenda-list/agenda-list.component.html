@@ -1,0 +1,53 @@
+<nb-layout>
+   <nb-layout-header fixed>
+      <nb-actions size="medium">
+         <nb-action (click)="goHome();"
+                    icon="home-outline"></nb-action>
+      </nb-actions>
+      Agenda list
+   </nb-layout-header>
+   <nb-layout-column class="colored-column-basic">
+      <nb-card>
+         <nb-card-header>Contacts: {{ agendaItems?.length ? agendaItems?.length : 0 }} 
+         </nb-card-header>
+         <nb-card-body>
+            <table>
+               <ng-container *ngFor="let product of contacts">
+                  <tr>
+                     <td>
+                        <p>{{product.name}}</p>
+                     </td>
+                     <td>
+                        <p>{{product.description}}</p>
+                     </td>
+                     <td>
+                        <p>£{{product.price | number : '1.2-2' }}</p>
+                     </td>
+                     <td>
+                        <ng-container *ngIf="product.basketLimit > 0">
+                           <button nbButton
+                                   (click)="addContact(product.sku)"
+                                   status="basic">Add to Basket</button>
+                        </ng-container>
+                        <ng-container *ngIf="product.basketLimit === 0">
+                           <button nbButton
+                                   disabled
+                                   status="basic">No more stock</button>
+                        </ng-container>
+                     </td>
+                     <td>
+                        <button nbButton
+                                (click)="removeContact(product.sku)"
+                                status="danger">Remove Contact</button>
+                     </td>
+                  </tr>
+               </ng-container>
+            </table>
+<!--             <button nbButton
+                    [disabled]="agendaItems?.length === 0"
+                    (click)="proceedCheckout()"
+                    status="primary">Proceed to Checkout</button> -->
+         </nb-card-body>
+      </nb-card>
+   </nb-layout-column>
+</nb-layout>
