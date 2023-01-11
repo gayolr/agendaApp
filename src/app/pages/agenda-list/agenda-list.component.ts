@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Contact } from 'src/app/interfaces/contact.interface';
 import { AgendaService } from '../../services/agenda.service';
 
 @Component({
@@ -9,36 +10,19 @@ import { AgendaService } from '../../services/agenda.service';
 	providers: [AgendaService]
 })
 export class AgendaListComponent implements OnInit {
-	contacts: any;
-	agendaItems: any = [];
+	contacts: Contact[] = [];
 	constructor(public router: Router, public agendaService: AgendaService) {}
 	ngOnInit() {
-		/* localStorage.setItem('agenda', JSON.stringify(agenda)); */
+		this.contacts = JSON.parse(localStorage.getItem('agenda') as any);
 	}
 
-	addContact(contact: number) {
-		/* this.agendaItems.push(
-			this.contacts.find(
-				(basketItem: { sku: number }) => basketItem.sku === sku
-			)
-		);
-		this.contacts.find(
-			(basketItem: { sku: number }) => basketItem.sku === sku
-		).basketLimit -= 1; */
+	removeContact(phone: number) {
+		const contactIndex = this.contacts.findIndex(item => item.phone === phone);
+		this.contacts.splice(contactIndex, 1);
+		localStorage.setItem('agenda', JSON.stringify(this.contacts));
 	}
 
-	removeContact(contact: number) {
-		let products = [];
-		products = JSON.parse(localStorage.getItem('products') as any);
-		/* this.contacts.find(
-			(producItem: { sku: number }) => producItem.sku === sku
-		).basketLimit = products.find(
-			(basketItem: { sku: number }) => basketItem.sku === sku
-		).basketLimit;
-		this.agendaItems = this.agendaItems.filter(
-			(basket: { sku: number }) => basket.sku !== sku
-		); */
-	}
+	updateAgenda() {}
 
 	goHome() {
 		this.router.navigateByUrl('');

@@ -8,45 +8,41 @@
    </nb-layout-header>
    <nb-layout-column class="colored-column-basic">
       <nb-card>
-         <nb-card-header>Contacts: {{ agendaItems?.length ? agendaItems?.length : 0 }} 
+         <nb-card-header>Contacts: {{ contacts?.length ? contacts?.length : 0 }}
          </nb-card-header>
          <nb-card-body>
             <table>
+               <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Organization</th>
+                  <th>Phone</th>
+               </tr>
                <ng-container *ngFor="let product of contacts">
                   <tr>
                      <td>
-                        <p>{{product.name}}</p>
+                        <p>{{product.firstName}}</p>
                      </td>
                      <td>
-                        <p>{{product.description}}</p>
+                        <p>{{product.lastName}}</p>
                      </td>
                      <td>
-                        <p>£{{product.price | number : '1.2-2' }}</p>
+                        <p>{{product.organization}}</p>
                      </td>
                      <td>
-                        <ng-container *ngIf="product.basketLimit > 0">
-                           <button nbButton
-                                   (click)="addContact(product.sku)"
-                                   status="basic">Add to Basket</button>
-                        </ng-container>
-                        <ng-container *ngIf="product.basketLimit === 0">
-                           <button nbButton
-                                   disabled
-                                   status="basic">No more stock</button>
-                        </ng-container>
+                        <p>{{product.phone}}</p>
                      </td>
                      <td>
                         <button nbButton
-                                (click)="removeContact(product.sku)"
+                                (click)="removeContact(product.phone)"
                                 status="danger">Remove Contact</button>
                      </td>
                   </tr>
                </ng-container>
             </table>
-<!--             <button nbButton
-                    [disabled]="agendaItems?.length === 0"
-                    (click)="proceedCheckout()"
-                    status="primary">Proceed to Checkout</button> -->
+            <button nbButton
+                    [disabled]="contacts?.length === 0"
+                    (click)="updateAgenda()">Save contacts</button>
          </nb-card-body>
       </nb-card>
    </nb-layout-column>
